@@ -24,10 +24,11 @@ app.get('/', function(req, res){
 var client = {
   id: null,
   cards: ['yo','bro','test'],
+  username: '',
+  role: '',
 }
 var state = {
   clients: [],
-  username: '',
   turn: 0,
   clientOnTurn: null,
 }
