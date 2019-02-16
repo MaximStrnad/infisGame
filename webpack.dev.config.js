@@ -4,7 +4,8 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/index.js']
+    main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/index.js'],
+    login: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/login.js'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -55,8 +56,17 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
+      inject: false,
       template: "./src/html/index.html",
       filename: "./index.html",
+      chunks: ['page2'],
+      excludeChunks: [ 'server' ]
+    }),
+    new HtmlWebPackPlugin({
+      inject: false,
+      template: "./src/html/game.html",
+      filename: "./game.html",
+      chunks: ['main'],
       excludeChunks: [ 'server' ]
     }),
     new webpack.HotModuleReplacementPlugin(),
